@@ -1,0 +1,24 @@
+.setting-leftspace {
+  width: 2em;
+}
+
+.setting-name {
+  white-space: nowrap;
+}
+
+.setting-main {
+  width: 100%; /* try to make this column as big as possible. */
+}
+.setting-help {
+  width: 16px;
+}
+
+.setting-input {
+  width: 100%;
+}
+
+.setting-description {
+  font-size: 0.8em;
+  margin-top: 0;
+  padding-top: 0;
+}
