@@ -1,7 +1,7 @@
 /*
  * Tag library for generating HTML forms like those of Hudson.
  */
-
+package org.kohsuke.scotland.core;
 
 /**
  * Generates an text box.
