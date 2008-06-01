@@ -84,5 +84,6 @@
   
   <modules>
     <module>scotland-core</module>
+    <module>scotland-xstream</module>
   </modules>
 </project>
