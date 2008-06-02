@@ -13,7 +13,7 @@ void list(DirectoryModel model, parent) {
     if(!children.isEmpty()) {
         UL(CLASS:"dirlist",SELFURL:model.selfUrl) {
             children.each { child ->
-
+                // compute the last node and its path
                 String url = "";
                 def last = child;
                 while(true) {
