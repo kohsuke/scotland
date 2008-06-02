@@ -14,6 +14,8 @@ void list(String baseUrl, DirectoryModel model, parent) {
         UL(CLASS:"dirlist") {
             children.each { child ->
                 LI {
+                    img(model.getChildCount(model.collapseStar(child))==0,false);
+
                     String url = baseUrl+'/';
                     while(true) {
                         url += model.getUrl(child)+'/';
@@ -27,4 +29,8 @@ void list(String baseUrl, DirectoryModel model, parent) {
             }
         }
     }
+}
+
+private void img(boolean leaf, boolean open) {
+    IMG(src:res(DirectoryTags,"${open?'open':'close'}-${leaf?'leaf':'node'}.gif"));
 }

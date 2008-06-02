@@ -1,3 +1,7 @@
 UL.dirlist {
     list-style: none;
 }
+
+UL.dirlist > LI > IMG {
+    margin-right: 5px;
+}

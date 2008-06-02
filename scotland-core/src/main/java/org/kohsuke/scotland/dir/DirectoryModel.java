@@ -20,4 +20,16 @@ public abstract class DirectoryModel<T> {
         if(children.size()==1)  return children.iterator().next();
         return null;
     }
+
+    /**
+     * Collapses all the way.
+     */
+    public T collapseStar(T parent) {
+        T o=parent;
+        while(true) {
+            T n = collapse(o);
+            if(n==null)     return o;
+            o = n;
+        }
+    }
 }
