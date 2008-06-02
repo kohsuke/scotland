@@ -19,15 +19,22 @@ public abstract class DirectoryModel<T> {
      */
     public final String selfUrl;
 
-    protected DirectoryModel(String baseUrl, String selfUrl) {
+    /**
+     * Equivalent of the "current directory"
+     */
+    public final T current;
+
+    protected DirectoryModel(T current, String baseUrl, String selfUrl) {
+        this.current = current;
         this.baseUrl = baseUrl;
         this.selfUrl = selfUrl;
     }
 
     public abstract String getName(T node);
     public abstract String getUrl(T node);
-
     public abstract Collection<T> getChildren(T parent);
+    public abstract T getChild(T parent, String name);
+
     public int getChildCount(T parent) {
         return getChildren(parent).size();
     }
