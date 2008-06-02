@@ -8,6 +8,22 @@ import java.util.Collection;
  * @author Kohsuke Kawaguchi
  */
 public abstract class DirectoryModel<T> {
+    /**
+     * Base URL of all the directory links.
+     */
+    public final String baseUrl;
+
+    /**
+     * URL to the {@link DirectoryModel} object itself.
+     * This is used later for AJAX calls to expand sub-trees.
+     */
+    public final String selfUrl;
+
+    protected DirectoryModel(String baseUrl, String selfUrl) {
+        this.baseUrl = baseUrl;
+        this.selfUrl = selfUrl;
+    }
+
     public abstract String getName(T node);
     public abstract String getUrl(T node);
 

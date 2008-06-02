@@ -8,15 +8,15 @@ package org.kohsuke.scotland.dir;
 /**
  * Lists up one level and let more to be expanded dynamically.
  */
-void list(String baseUrl, DirectoryModel model, parent) {
+void list(DirectoryModel model, parent) {
     children = model.getChildren(parent);
     if(!children.isEmpty()) {
-        UL(CLASS:"dirlist") {
+        UL(CLASS:"dirlist",SELFURL:model.selfUrl) {
             children.each { child ->
                 LI {
                     img(model.getChildCount(model.collapseStar(child))==0,false);
 
-                    String url = baseUrl+'/';
+                    String url = model.baseUrl+'/';
                     while(true) {
                         url += model.getUrl(child)+'/';
                         A(HREF:url,model.getName(child));
@@ -32,5 +32,6 @@ void list(String baseUrl, DirectoryModel model, parent) {
 }
 
 private void img(boolean leaf, boolean open) {
-    IMG(src:res(DirectoryTags,"${open?'open':'close'}-${leaf?'leaf':'node'}.gif"));
+    IMG(SRC:res(DirectoryTags,"${open?'o':'c'}${leaf?'l':'n'}.gif"),
+        ONCLICK:"toggleDirTree(this)");
 }
