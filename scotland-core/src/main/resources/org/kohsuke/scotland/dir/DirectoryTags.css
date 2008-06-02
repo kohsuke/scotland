@@ -5,3 +5,7 @@ UL.dirlist {
 UL.dirlist > LI > IMG {
     margin-right: 5px;
 }
+
+UL.dirlist > LI > IMG.clickable {
+    cursor: pointer;    
+}

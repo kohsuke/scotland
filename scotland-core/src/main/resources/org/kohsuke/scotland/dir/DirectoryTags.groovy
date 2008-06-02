@@ -13,10 +13,21 @@ void list(DirectoryModel model, parent) {
     if(!children.isEmpty()) {
         UL(CLASS:"dirlist",SELFURL:model.selfUrl) {
             children.each { child ->
-                LI {
-                    img(model.getChildCount(model.collapseStar(child))==0,false);
 
-                    String url = model.baseUrl+'/';
+                String url = "";
+                def last = child;
+                while(true) {
+                    if(url.length()>0)  url+='/';
+                    url += model.getUrl(child);
+                    next = model.collapse(last);
+                    if(next==null)    break;
+                    last=next
+                }
+
+                LI(PATH:url) {
+                    img(model.getChildCount(last)==0,false);
+
+                    url = model.baseUrl+'/';
                     while(true) {
                         url += model.getUrl(child)+'/';
                         A(HREF:url,model.getName(child));
@@ -32,6 +43,9 @@ void list(DirectoryModel model, parent) {
 }
 
 private void img(boolean leaf, boolean open) {
-    IMG(SRC:res(DirectoryTags,"${open?'o':'c'}${leaf?'l':'n'}.gif"),
-        ONCLICK:"toggleDirTree(this)");
+    def url = res(DirectoryTags, "${open ? 'o' : 'c'}${leaf ? 'l' : 'n'}.gif")
+    if(leaf)
+        IMG(SRC:url)
+    else
+        IMG(SRC:url, CLASS:"clickable", ONCLICK:"toggleDirTree(this)");
 }

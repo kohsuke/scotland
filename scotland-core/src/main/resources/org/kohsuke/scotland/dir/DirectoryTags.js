@@ -14,7 +14,7 @@ function toggleDirTree(node) {
     if(src.endsWith("cn.gif")) {
         new Ajax.Request(selfUrl+"/ajax", {
             method: "post",
-            parameters: {path:node.getAttribute("PATH")},
+            parameters: {path:li.getAttribute("PATH")},
             onSuccess: function(rsp) {
                 changeImageTo("on.gif");
                 Element.insert(li,{after:rsp.responseText});
