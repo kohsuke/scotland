@@ -1,7 +1,8 @@
 // @include org.kohsuke.stapler.framework.prototype.prototype
 
 function toggleDirTree(node) {
-    var ul = node.parentNode.parentNode;
+    var li = node.parentNode;
+    var ul = li.parentNode;
     var selfUrl = ul.getAttribute("SELFURL");
 
     var src = node.getAttribute("src");
@@ -15,13 +16,13 @@ function toggleDirTree(node) {
             method: "post",
             parameters: "parent=" + node.getAttribute("PATH"),
             onSuccess: function(rsp) {
-                changeImageTo("co.gif");
-                Element.insert(node,{after:rsp.responseText});
+                changeImageTo("on.gif");
+                Element.insert(li,{after:rsp.responseText});
             }
         });
     } else
-    if(src.endsWith("co.gif")) {
-        Element.remove(node.nextSibling);
+    if(src.endsWith("on.gif")) {
+        Element.remove(li.nextSibling);
         changeImageTo("cn.gif");
     }
 }
