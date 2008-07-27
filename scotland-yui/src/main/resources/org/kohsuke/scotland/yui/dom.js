@@ -1,1 +1,0 @@
-// @include org.kohsuke.scotland.yui.yahoo
