@@ -1,3 +1,4 @@
+// @include org.kohsuke.stapler.framework.prototype.prototype
 /*
    Behaviour v1.1 by Ben Nolan, June 2005. Based largely on the work
    of Simon Willison (see comments by Simon below).

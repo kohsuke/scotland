@@ -1,5 +1,6 @@
-// @include org.kohsuke.scotland.behavior.behavior
-// @include org.kohsuke.scotland.yui.dom
+// @include org.kohsuke.scotland.behavior
+// @include org.kohsuke.scotland.yui.button
+// @include org.kohsuke.scotland.yui.menu
 
 Behaviour.register({
     "DIV.hetero-list-container" : function(e) {
