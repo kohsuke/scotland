@@ -68,20 +68,20 @@ def heteroList(String name, Class targetType, boolean hasHeader, Collection desc
                 render(i.descriptor,i);
             }
         }
-    }
 
-    DIV(CLASS:"repeatable-insertion-point");
+        DIV(CLASS:"repeatable-insertion-point");
 
-    DIV(CLASS:"prototypes",STYLE:"display:none") {
-        // render one prototype for each type
-        for( Descriptor d in descriptors ) {
-            DIV(NAME:"name",TITLE:d.displayName,TOOLTIP:d.tooltip) {
-                render(d,null);
+        DIV(CLASS:"prototypes",STYLE:"display:none") {
+            // render one prototype for each type
+            for( Descriptor d in descriptors ) {
+                DIV(NAME:"name",TITLE:d.displayName,TOOLTIP:d.tooltip) {
+                    render(d,null);
+                }
             }
         }
-    }
 
-    DIV {
-        INPUT(TYPE:"button", VALUE:"Add", CLASS:"hetero-list-add");
+        DIV {
+            INPUT(TYPE:"button", VALUE:"Add", CLASS:"hetero-list-add");
+        }
     }
 }
