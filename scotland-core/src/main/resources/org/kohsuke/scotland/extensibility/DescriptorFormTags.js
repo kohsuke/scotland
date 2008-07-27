@@ -68,6 +68,21 @@ Behaviour.register({
         });
     },
 
+    // button to add a new repeatable block
+    "INPUT.repeatable-add" : function(e) {
+        makeButton(e,function(e) {
+            repeatableSupport.onAdd(e.target);
+        });
+        e = null; // avoid memory leak
+    },
+
+    "INPUT.repeatable-delete" : function(e) {
+        makeButton(e,function(e) {
+            repeatableSupport.onDelete(e.target);
+        });
+        e = null; // avoid memory leak
+    },
+    
     "DIV.repeated-container" : function(e) {
         // compute the insertion point
         var ip = e.lastChild;
@@ -166,3 +181,86 @@ var DragDrop = function(id, sGroup, config) {
         }
     });
 })();
+
+
+
+
+// code for supporting repeatable.jelly
+var repeatableSupport = {
+    // set by the inherited instance to the insertion point DIV
+    insertionPoint: null,
+
+    // HTML text of the repeated chunk
+    blockHTML: null,
+
+    // containing <div>.
+    container: null,
+
+    // block name for structured HTML
+    name : null,
+
+    // do the initialization
+    init : function(container,master,insertionPoint) {
+        this.container = $(container);
+        this.container.tag = this;
+        master = $(master);
+        this.blockHTML = master.innerHTML;
+        master.parentNode.removeChild(master);
+        this.insertionPoint = $(insertionPoint);
+        this.name = master.getAttribute("name");
+        this.update();
+    },
+
+    // insert one more block at the insertion position
+    expand : function() {
+        // importNode isn't supported in IE.
+        // nc = document.importNode(node,true);
+        var nc = document.createElement("div");
+        nc.className = "repeated-chunk";
+        nc.setAttribute("name",this.name);
+        nc.innerHTML = this.blockHTML;
+        this.insertionPoint.parentNode.insertBefore(nc, this.insertionPoint);
+
+        Behaviour.applySubtree(nc);
+        this.update();
+    },
+
+    // update CSS classes associated with repeated items.
+    update : function() {
+        var children = [];
+        for( var n=this.container.firstChild; n!=null; n=n.nextSibling )
+            if(Element.hasClassName(n,"repeated-chunk"))
+                children.push(n);
+
+        if(children.length==0) {
+            // noop
+        } else
+        if(children.length==1) {
+            children[0].className = "repeated-chunk first last only";
+        } else {
+            children[0].className = "repeated-chunk first";
+            for(var i=1; i<children.length-1; i++)
+                children[i].className = "repeated-chunk middle";
+            children[children.length-1].className = "repeated-chunk last";
+        }
+    },
+
+    // these are static methods that don't rely on 'this'
+
+    // called when 'delete' button is clicked
+    onDelete : function(n) {
+        while (!Element.hasClassName(n,"repeated-chunk"))
+            n = n.parentNode;
+
+        var p = n.parentNode;
+        p.removeChild(n);
+        p.tag.update();
+    },
+
+    // called when 'add' button is clicked
+    onAdd : function(n) {
+        while(n.tag==null)
+            n = n.parentNode;
+        n.tag.expand();
+    }
+};
