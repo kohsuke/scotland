@@ -19,3 +19,27 @@ def entry(args,body) {
             TD(CLASS:"setting-help")
     }
 }
+
+def block(body) {
+    TR {
+        TD(COLSPAN:3,body)
+    }
+}
+
+def repeatableDeleteButton() {
+    repeatableDeleteButton("Delete")
+}
+
+def repeatableDeleteButton(value) {
+    INPUT(TYPE:"button",VALUE:value,CLASS:"repeatable-delete")
+}
+
+def helpArea() {
+    TR(CLASS:"help-area") {
+        TD()
+        TD(COLSPAN:2) {
+            DIV(CLASS:"help", "Loading...")
+        }
+        TD()
+    }
+}
