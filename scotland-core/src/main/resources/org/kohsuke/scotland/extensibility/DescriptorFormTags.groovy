@@ -5,8 +5,6 @@ package org.kohsuke.scotland.extensibility;
 
 import org.kohsuke.scotland.core.FormTags;
 
-FormTags f = taglib(FormTags);
-
 /*
   Outer most tag for creating a heterogeneous list, where the user can add different contents.
 
@@ -26,6 +24,7 @@ FormTags f = taglib(FormTags);
  See Descriptor.newInstancesFromHeteroList for how to parse the submission.
 */
 def heteroList(String name, Class targetType, boolean hasHeader, Collection descriptors, Collection items) {
+    FormTags f = taglib(FormTags);
     if(targetType==null)
         targetType = my.class;
 
