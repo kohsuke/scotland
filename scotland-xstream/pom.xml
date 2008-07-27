@@ -8,6 +8,7 @@
     <relativePath>../pom.xml</relativePath>
   </parent>
   <artifactId>scotland-xstream</artifactId>
+  <name>Scotland XStream module</name>
 
   <dependencies>
     <dependency>

@@ -4,6 +4,7 @@
   <groupId>org.kohsuke.scotland</groupId>
   <artifactId>scotland</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <name>Scotland</name>
 
   <packaging>pom</packaging>
   <url>http://scotland.dev.java.net</url>
