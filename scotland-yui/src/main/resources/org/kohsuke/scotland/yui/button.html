@@ -1,3 +1,22 @@
 <@include org.kohsuke.scotland.yui.element>
+<@include org.kohsuke.stapler.framework.prototype.prototype>
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/button/assets/skins/sam/button.css">
 <script type="text/javascript" src="http://yui.yahooapis.com/2.5.2/build/button/button-min.js"></script>
+<script type="text/javascript">
+    /**
+     * Wraps a button into YUI button.
+     *
+     * @param e
+     *      button element
+     * @param onclick
+     *      onclick handler
+     */
+    function makeButton(e,onclick) {
+        var clsName = e.className;
+        var btn = new YAHOO.widget.Button(e,{});
+        if(onclick!=null)
+            btn.addListener("click",onclick);
+        Element.addClassName(btn.get("element"),clsName);
+        return btn;
+    }
+</script>

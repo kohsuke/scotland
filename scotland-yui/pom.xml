@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0"?>     
 <project>
   <modelVersion>4.0.0</modelVersion>
   <parent>
@@ -7,5 +7,5 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
   <artifactId>scotland-yui</artifactId>
-  <name>scotland-yui</name>
+  <name>Scotland Yahoo UI module</name>
 </project>
