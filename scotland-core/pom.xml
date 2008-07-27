@@ -8,4 +8,11 @@
     <relativePath>../pom.xml</relativePath>
   </parent>
   <artifactId>scotland-core</artifactId>
+  <dependencies>
+    <dependency><!-- should we try to maintain the separation? -->
+      <groupId>${project.groupId}</groupId>
+      <artifactId>scotland-xstream</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
 </project>
