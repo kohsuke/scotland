@@ -51,7 +51,7 @@ def heteroList(String name, Class targetType, boolean hasHeader, Collection desc
                 }
                 if(help!=null)  f.helpArea();
             }
-            include(descriptor.clazz,"config");
+            include(descriptor.clazz,"config.groovy");
             f.block {
                 DIV(ALIGN:"right") {
                     f.repeatableDeleteButton()
@@ -74,7 +74,7 @@ def heteroList(String name, Class targetType, boolean hasHeader, Collection desc
         DIV(CLASS:"prototypes",STYLE:"display:none") {
             // render one prototype for each type
             for( Descriptor d in descriptors ) {
-                DIV(NAME:"name",TITLE:d.displayName,TOOLTIP:d.tooltip) {
+                DIV(NAME:"name",TITLE:d.displayName/*,TOOLTIP:d.tooltip*/) {
                     render(d,null);
                 }
             }
