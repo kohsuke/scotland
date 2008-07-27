@@ -166,4 +166,3 @@ var DragDrop = function(id, sGroup, config) {
         }
     });
 })();
-f
