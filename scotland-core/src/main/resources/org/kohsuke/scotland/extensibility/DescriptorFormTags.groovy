@@ -3,7 +3,9 @@
  */
 package org.kohsuke.scotland.extensibility;
 
-org.kohsuke.scotland.core.FormTags f = taglib(org.kohsuke.scotland.core.FormTags);
+import org.kohsuke.scotland.core.FormTags;
+
+FormTags f = taglib(FormTags);
 
 /*
   Outer most tag for creating a heterogeneous list, where the user can add different contents.
@@ -24,6 +26,9 @@ org.kohsuke.scotland.core.FormTags f = taglib(org.kohsuke.scotland.core.FormTags
  See Descriptor.newInstancesFromHeteroList for how to parse the submission.
 */
 def heteroList(String name, Class targetType, boolean hasHeader, Collection descriptors, Collection items) {
+    if(targetType==null)
+        targetType = my.class;
+
     // render one config page
     def render = { Descriptor descriptor, Describable instance ->
         TABLE {
@@ -38,16 +43,15 @@ def heteroList(String name, Class targetType, boolean hasHeader, Collection desc
                     if(help!=null) {
                         TD {
                             A(HREF:"#",CLASS:"help-button",HELPURL:"${rootURL}${help}") {
+                                // TODO: use the img function
                                 IMG(SRC:"${imagesURL}/16x16/help.gif")
                             }
                         }
                     }
                 }
-                if(help!=null) {
-                    f.helpArea();
-                }
+                if(help!=null)  f.helpArea();
             }
-            // TODO: <st:include from="${descriptor}" page="${descriptor.configPage}" />
+            include(descriptor.clazz,"config");
             f.block {
                 DIV(ALIGN:"right") {
                     f.repeatableDeleteButton()

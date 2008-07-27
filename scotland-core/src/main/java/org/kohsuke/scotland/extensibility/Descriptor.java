@@ -156,16 +156,11 @@ public abstract class Descriptor<T extends Describable> {
         return true;
     }
 
-    public String getConfigPage() {
-        return getViewPage(clazz, "config.jelly");
-    }
-
-    public String getGlobalConfigPage() {
-        return getViewPage(clazz, "global.jelly");
-    }
-
-    protected final String getViewPage(Class<?> clazz, String pageName) {
-        return '/'+ clazz.getName().replace('.','/').replace('$','/')+"/"+ pageName;
+    public <U extends Describable> Descriptor<U> as(Class<U> subtype) {
+        if(subtype.isAssignableFrom(clazz))
+            return (Descriptor<U>)this;
+        else
+            throw new IllegalArgumentException(subtype.getName());
     }
 
 
@@ -301,7 +296,7 @@ public abstract class Descriptor<T extends Describable> {
      * {@link Descriptor}s are all supposed to have the singleton semantics, so
      * this shouldn't cause a memory leak.
      */
-    public static final CopyOnWriteArrayList<Descriptor> ALL = new CopyOnWriteArrayList<Descriptor>();
+    public static final DescriptorList<Describable> ALL = new DescriptorList<Describable>();
 
     /**
      * Used in {@link #checkMethods} to indicate that there's no check method.
