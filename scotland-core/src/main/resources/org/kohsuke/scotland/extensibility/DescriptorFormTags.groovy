@@ -50,6 +50,8 @@ def heteroList(String name, Class targetType, boolean hasHeader, Collection desc
                 }
                 if(help!=null)  f.helpArea();
             }
+            context.setVariable('descriptor',descriptor);
+            context.setVariable('it',instance);
             include(descriptor.clazz,"config.groovy");
             f.block {
                 DIV(ALIGN:"right") {
