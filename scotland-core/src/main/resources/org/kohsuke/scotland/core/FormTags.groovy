@@ -55,3 +55,8 @@ def helpArea() {
         TD()
     }
 }
+
+def structuredForm(args,body) {
+    adjunct("org.kohsuke.scotland.core.StructuredForm")
+    FORM([CLASS:"structured-form"]+args,body)
+}
