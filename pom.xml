@@ -43,7 +43,7 @@
     <dependency>
       <groupId>org.kohsuke.stapler</groupId>
       <artifactId>stapler</artifactId>
-      <version>1.80-SNAPSHOT</version>
+      <version>1.81-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.codehaus.groovy</groupId>
