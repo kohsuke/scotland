@@ -6,8 +6,20 @@ package org.kohsuke.scotland.core;
 /**
  * Generates an text box.
  */
-def textBox(String name) {
-    INPUT(TYPE:"text",NAME:name,VALUE:my."${name}")
+def textBox(String field) {
+    textBox(field,Collections.EMPTY_MAP)
+}
+
+// TODO: this method depends on the extensibility support. modularize.
+def textBox(String field, Map args) {
+    String checkUrl= args.checkUrl;
+    if(checkUrl==null)
+        checkUrl = descriptor.getCheckUrl(field);
+    INPUT([CLASS:"setting-input ${checkUrl!=null?'validated':''}",
+          NAME:field,
+          VALUE:my?."${field}", // TODO: default value
+          TYPE:"text",
+          checkUrl:checkUrl]+args)
 }
 
 def entry(args,body) {
