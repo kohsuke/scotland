@@ -5,7 +5,7 @@ package org.kohsuke.scotland.extensibility;
 
 import org.kohsuke.scotland.core.FormTags;
 
-/*
+/**
   Outer most tag for creating a heterogeneous list, where the user can add different contents.
 
   Mandatory attributes:
@@ -21,7 +21,7 @@ import org.kohsuke.scotland.core.FormTags;
    hasHeader:     for each item, add a caption from descriptor.getDisplayName().
                   this also activates D&D (where the header is a grip), and help text support.
 
- See Descriptor.newInstancesFromHeteroList for how to parse the submission.
+ Use StaplerRequest.bindJSONToList() to parse this.
 */
 def heteroList(String name, Class targetType, boolean hasHeader, Collection descriptors, Collection items) {
     FormTags f = taglib(FormTags);
@@ -59,7 +59,7 @@ def heteroList(String name, Class targetType, boolean hasHeader, Collection desc
                 }
             }
         }
-        INPUT(TYPE:"hidden",NAME:"kind",VALUE:"${descriptor.class.name}")
+        INPUT(TYPE:"hidden",NAME:"stapler-class",VALUE:"${descriptor.clazz.name}")
     };
 
     DIV(CLASS:"hetero-list-container ${hasHeader?'with-drag-drop':''}") {
