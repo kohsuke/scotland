@@ -56,7 +56,11 @@ def helpArea() {
     }
 }
 
+/**
+ * Generates a FORM element that submits the end result via
+ * structured form submission.
+ */
 def structuredForm(args,body) {
     adjunct("org.kohsuke.scotland.core.StructuredForm")
-    FORM([CLASS:"structured-form"]+args,body)
+    FORM([CLASS:"structured-form",METHOD:"post"]+args,body)
 }
