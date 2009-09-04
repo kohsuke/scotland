@@ -4,7 +4,7 @@
   <parent>
     <artifactId>scotland</artifactId>
     <groupId>org.kohsuke.scotland</groupId>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
   </parent>
   <artifactId>scotland-yui</artifactId>
   <name>Scotland Yahoo UI module</name>
